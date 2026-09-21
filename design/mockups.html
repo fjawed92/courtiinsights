@@ -1,0 +1,585 @@
+<title>Court Insights Colorways</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  /* ============ page chrome (theme-aware) ============ */
+  :root{
+    --paper:#EDEFF3;
+    --surface:#FFFFFF;
+    --line:#D5DCE6;
+    --ink:#0C1522;
+    --muted:#5A6777;
+    --pin:#C8102E;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#090F16;--surface:#111A24;--line:#25323F;--ink:#E7EEF5;--muted:#91A1B2;--pin:#E8556A;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#090F16;--surface:#111A24;--line:#25323F;--ink:#E7EEF5;--muted:#91A1B2;--pin:#E8556A;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Public Sans","Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding-inline:16px;}
+  .page-head{padding-block:34px 8px;}
+  .page-head .eyebrow{
+    font-family:"Saira Condensed",Arial,sans-serif;font-size:12px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  }
+  .page-head h1{
+    font-family:"Saira Condensed",Arial,sans-serif;font-weight:700;font-size:clamp(30px,5vw,44px);
+    line-height:1.02;text-transform:uppercase;margin:6px 0 10px;text-wrap:balance;
+  }
+  .page-head p{margin:0;max-width:64ch;color:var(--muted);}
+  .sec{padding-block:30px;}
+  .sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px;margin-bottom:20px;}
+  .sec-head h2{
+    font-family:"Saira Condensed",Arial,sans-serif;font-weight:700;font-size:23px;
+    text-transform:uppercase;letter-spacing:.03em;margin:0;
+  }
+  .sec-head span{color:var(--muted);font-size:13.5px;}
+
+  /* ============ device frames ============ */
+  .phones{display:flex;gap:26px;flex-wrap:wrap;justify-content:flex-start;}
+  .device{flex:1 1 300px;max-width:356px;min-width:0;}
+  .device-label{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:13px;color:var(--muted);}
+  .device-label b{
+    font-family:"Saira Condensed",Arial,sans-serif;font-size:14px;font-weight:700;
+    letter-spacing:.09em;text-transform:uppercase;color:var(--ink);
+  }
+  .device-label .dot{width:10px;height:10px;border-radius:50%;flex:none;}
+  .phone{
+    background:#0A0D12;border-radius:40px;padding:11px;
+    box-shadow:0 2px 6px rgba(8,14,22,.2),0 26px 50px -18px rgba(8,14,22,.45);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .screen{
+    position:relative;border-radius:30px;overflow:hidden;height:660px;
+    display:flex;flex-direction:column;background:var(--s-ground);color:var(--s-ink);
+  }
+  .island{
+    position:absolute;top:8px;left:50%;transform:translateX(-50%);
+    width:86px;height:22px;border-radius:12px;background:#0A0D12;z-index:6;
+  }
+  .statusbar{
+    flex:none;display:flex;align-items:center;justify-content:space-between;
+    padding:9px 18px 6px;background:var(--s-brand);color:#fff;font-size:11.5px;
+    font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+  }
+  .statusbar .sigs{display:flex;align-items:flex-end;gap:2.5px;height:10px;}
+  .statusbar .sigs i{width:3px;background:currentColor;border-radius:1px;display:block;}
+  .statusbar .batt{width:20px;height:10px;border:1px solid currentColor;border-radius:3px;position:relative;display:block;}
+  .statusbar .batt::after{content:"";position:absolute;inset:1.5px;right:6px;background:currentColor;border-radius:1px;}
+  .scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;}
+  .tabbar{
+    flex:none;display:flex;background:var(--s-surface);border-top:1px solid var(--s-line);
+    padding:7px 4px 9px;
+  }
+  .tabbar a{
+    flex:1;display:grid;justify-items:center;gap:3px;text-decoration:none;color:var(--s-muted);
+    font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:600;
+  }
+  .tabbar a.on{color:var(--s-acc);}
+  .tabbar svg{width:19px;height:19px;display:block;}
+
+  /* ============ shared screen UI (both colorways) ============ */
+  .s-league{background:var(--s-brand);color:#fff;padding:14px 16px 16px;}
+  .s-league .kick{
+    font-family:"Saira Condensed",Arial,sans-serif;font-size:10.5px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--s-acc-on-brand);
+  }
+  .s-league h3{
+    font-family:"Saira Condensed",Arial,sans-serif;font-weight:700;font-size:28px;line-height:.94;
+    text-transform:uppercase;margin:5px 0 0;letter-spacing:.01em;
+  }
+  .s-league h3 em{display:block;font-style:normal;color:var(--s-acc-on-brand);}
+  .s-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px;}
+  .s-chip{
+    display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.25);
+    border-radius:999px;padding:2.5px 9px;font-size:11px;color:rgba(255,255,255,.8);
+  }
+  .s-chip b{color:#fff;font-weight:600;}
+  .live{width:6px;height:6px;border-radius:50%;background:var(--s-live);flex:none;}
+
+  .s-sponsors{background:var(--s-surface);border-bottom:1px solid var(--s-line);padding:0 16px 14px;}
+  .s-sponsors .bar{
+    display:flex;align-items:center;gap:9px;padding:9px 0 10px;
+  }
+  .s-sponsors .bar span{
+    font-family:"Saira Condensed",Arial,sans-serif;font-size:10.5px;font-weight:600;
+    letter-spacing:.17em;text-transform:uppercase;color:var(--s-acc);
+  }
+  .s-sponsors .bar i{flex:1;height:1px;background:var(--s-line);display:block;}
+  .presenting{
+    display:flex;align-items:center;gap:11px;background:var(--s-ground);
+    border:1px solid var(--s-line);border-radius:10px;padding:11px 12px;
+  }
+  .glyph{
+    width:36px;height:36px;flex:none;border-radius:8px;display:grid;place-items:center;
+    background:var(--s-brand);color:var(--s-acc-on-brand);
+    font-family:"Saira Condensed",Arial,sans-serif;font-weight:700;font-size:16px;letter-spacing:.03em;
+  }
+  .lock{display:grid;line-height:1.15;min-width:0;}
+  .lock b{font-family:"Saira Condensed",Arial,sans-serif;font-weight:700;font-size:16px;letter-spacing:.04em;text-transform:uppercase;}
+  .lock small{font-size:10.5px;color:var(--s-muted);letter-spacing:.04em;}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px;}
+  .tile{
+    display:flex;align-items:center;gap:8px;border:1px solid var(--s-line);border-radius:9px;
+    padding:8px 9px;background:var(--s-ground);
+  }
+  .tile .glyph{width:27px;height:27px;border-radius:6px;font-size:12px;background:var(--s-surface);border:1px solid var(--s-line);color:var(--s-brand);}
+  .tile .lock b{font-size:13px;}
+  .tile .lock small{font-size:9.5px;}
+
+  .s-block{padding:14px 16px 4px;}
+  .s-block h4{
+    font-family:"Saira Condensed",Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--s-muted);margin:0 0 9px;display:flex;align-items:center;gap:8px;
+  }
+  .s-block h4 a{margin-left:auto;text-decoration:none;color:var(--s-acc);letter-spacing:.06em;}
+  .card{background:var(--s-surface);border:1px solid var(--s-line);border-radius:11px;padding:11px 12px;}
+  .card + .card{margin-top:8px;}
+  .card .top{display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--s-muted);margin-bottom:8px;}
+  .card .top.is-live{color:var(--s-live);font-weight:700;}
+  .ln{display:flex;align-items:center;gap:9px;padding-block:4px;}
+  .ln + .ln{border-top:1px solid var(--s-line);}
+  .tag{
+    width:30px;height:23px;flex:none;border-radius:5px;display:grid;place-items:center;
+    background:var(--s-ground);border:1px solid var(--s-line);color:var(--s-ink);
+    font-family:"Saira Condensed",Arial,sans-serif;font-size:11.5px;font-weight:700;
+  }
+  .ln .nm{flex:1;font-size:13.5px;font-weight:500;}
+  .ln .rc{font-size:10.5px;color:var(--s-muted);}
+  .ln .pt{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:600;font-size:15px;}
+  .ln.dim .nm,.ln.dim .pt{color:var(--s-muted);}
+  .card .bot{margin-top:8px;padding-top:7px;border-top:1px solid var(--s-line);font-size:10.5px;color:var(--s-muted);}
+  .card .bot b{color:var(--s-acc);font-weight:600;}
+
+  .mini{width:100%;border-collapse:collapse;}
+  .mini th{
+    font-family:"Saira Condensed",Arial,sans-serif;font-size:9.5px;font-weight:600;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--s-muted);text-align:right;padding:0 0 7px;
+  }
+  .mini th:first-child{text-align:left;}
+  .mini td{padding:7px 0;text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:12.5px;}
+  .mini td:first-child{text-align:left;font-family:"Public Sans",sans-serif;}
+  .mini tr + tr td{border-top:1px solid var(--s-line);}
+  .mini .tm{display:flex;align-items:center;gap:8px;}
+  .mini .tm .sd{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--s-muted);width:10px;}
+  .mini .tm b{font-size:13px;font-weight:600;}
+  .mini .w{color:var(--s-win);font-weight:600;}
+  .mini .l{color:var(--s-live);font-weight:600;}
+  .cut td{border-top:2px solid var(--s-acc)!important;}
+  .s-note{padding:10px 16px 18px;font-size:10.5px;color:var(--s-muted);}
+
+  /* ============ colorway tokens ============ */
+  .cw-navy{
+    --s-ground:#EEF1F5;--s-surface:#FFFFFF;--s-line:#DCE3EC;--s-ink:#0B1524;--s-muted:#66748A;
+    --s-brand:#14304F;--s-acc:#B57800;--s-acc-on-brand:#F0A81E;--s-live:#C0392B;--s-win:#15734A;
+  }
+  .cw-nba{
+    --s-ground:#F4F6FA;--s-surface:#FFFFFF;--s-line:#DCE2EC;--s-ink:#0E1730;--s-muted:#5F6B82;
+    --s-brand:#1D428A;--s-acc:#C8102E;--s-acc-on-brand:#FFFFFF;--s-live:#C8102E;--s-win:#17794F;
+  }
+  .cw-nba .s-league h3 em{color:#FFFFFF;opacity:.62;}
+  .cw-nba .s-league{
+    background:linear-gradient(180deg,#1D428A 0%,#173873 100%);
+    border-bottom:3px solid #C8102E;
+  }
+  .cw-nba .glyph{color:#fff;}
+  .cw-nba .tile .glyph{color:#1D428A;}
+  .cw-nba .s-sponsors .bar span{color:#C8102E;}
+  .cw-nba .statusbar{background:#1D428A;}
+
+  /* ============ desktop frame ============ */
+  .browser{
+    background:#0A0D12;border-radius:12px;padding:0 0 8px;border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 2px 6px rgba(8,14,22,.2),0 26px 50px -20px rgba(8,14,22,.4);overflow:hidden;
+  }
+  .chrome{display:flex;align-items:center;gap:7px;padding:9px 13px;}
+  .chrome i{width:10px;height:10px;border-radius:50%;background:#3B4552;display:block;}
+  .chrome .url{
+    margin-left:8px;flex:1;background:#171D26;border-radius:6px;height:21px;display:flex;align-items:center;
+    padding:0 10px;color:#7E8B9C;font-size:11px;font-family:"IBM Plex Mono",monospace;
+  }
+  .dt-vp{overflow:hidden;background:var(--s-ground);}
+  .dt{width:1180px;transform-origin:top left;pointer-events:none;background:var(--s-ground);color:var(--s-ink);}
+  .dt-nav{background:#173873;color:#fff;display:flex;align-items:center;gap:22px;padding:11px 26px;}
+  .dt-nav .brandmark{font-family:"Saira Condensed",Arial,sans-serif;font-weight:700;font-size:19px;letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+  .dt-nav .brandmark .b{width:17px;height:17px;border-radius:50%;background:#C8102E;display:block;}
+  .dt-nav nav{margin-left:auto;display:flex;gap:20px;font-family:"Saira Condensed",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);}
+  .dt-league{background:linear-gradient(180deg,#1D428A,#173873);border-bottom:3px solid #C8102E;color:#fff;padding:30px 26px 26px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;}
+  .dt-league .kick{font-family:"Saira Condensed",Arial,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);}
+  .dt-league h3{font-family:"Saira Condensed",Arial,sans-serif;font-weight:700;font-size:56px;line-height:.93;text-transform:uppercase;margin:6px 0 0;}
+  .dt-league h3 em{font-style:normal;display:block;color:rgba(255,255,255,.6);}
+  .dt-league .wk{text-align:right;font-family:"Saira Condensed",Arial,sans-serif;}
+  .dt-league .wk small{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.65);}
+  .dt-league .wk b{font-size:28px;}
+  .dt-sponsors{background:#fff;padding:0 26px 22px;border-bottom:1px solid var(--s-line);}
+  .dt-sponsors .bar{display:flex;align-items:center;gap:12px;height:46px;}
+  .dt-sponsors .bar span{font-family:"Saira Condensed",Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#C8102E;}
+  .dt-sponsors .bar i{flex:1;height:1px;background:var(--s-line);display:block;}
+  .dt-sponsors .row{display:flex;gap:10px;align-items:stretch;}
+  .dt-sponsors .pres{flex:0 0 340px;display:flex;align-items:center;gap:13px;background:#F4F6FA;border:1px solid var(--s-line);border-radius:10px;padding:14px 16px;}
+  .dt-sponsors .pres .glyph{width:48px;height:48px;border-radius:9px;font-size:21px;background:#1D428A;color:#fff;}
+  .dt-sponsors .pres .lock b{font-size:21px;}
+  .dt-sponsors .grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+  .dt-sponsors .grid .tile{background:#fff;}
+  .dt-body{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;padding:22px 26px 30px;}
+  .dt-panel{background:#fff;border:1px solid var(--s-line);border-radius:10px;overflow:hidden;}
+  .dt-panel .hd{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--s-line);}
+  .dt-panel .hd h5{font-family:"Saira Condensed",Arial,sans-serif;font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:.03em;margin:0;}
+  .dt-panel .hd small{margin-left:auto;color:var(--s-muted);font-size:12px;}
+  .dt-panel .bd{padding:12px 16px 14px;}
+  .dt-rail{display:flex;gap:10px;padding:12px 16px 14px;}
+  .dt-rail .card{flex:1;}
+
+  /* ============ palette spec ============ */
+  .swatches{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));}
+  .pal{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .pal h3{font-family:"Saira Condensed",Arial,sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin:0;padding:12px 14px;border-bottom:1px solid var(--line);}
+  .pal ul{list-style:none;margin:0;padding:8px 14px 14px;}
+  .pal li{display:flex;align-items:center;gap:10px;padding-block:6px;font-size:13px;}
+  .pal li + li{border-top:1px solid var(--line);}
+  .pal .sw{width:26px;height:26px;border-radius:6px;flex:none;border:1px solid rgba(0,0,0,.12);}
+  .pal .nm{flex:1;color:var(--muted);}
+  .pal .hex{font-family:"IBM Plex Mono",monospace;font-size:12px;}
+  footer{border-top:1px solid var(--line);margin-top:10px;padding-block:20px 30px;color:var(--muted);font-size:13px;}
+
+  @media (max-width:560px){
+    .phones{gap:22px;}
+    .device{max-width:100%;}
+    .screen{height:600px;}
+  }
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+
+<div class="wrap">
+  <header class="page-head">
+    <span class="eyebrow">Court Insights · Home page</span>
+    <h1>Two Colorways, One Layout</h1>
+    <p>The same home page in the original varsity navy and in an NBA-style red, white and blue. Sponsors sit directly under the league name in both. The phone screens scroll — swipe or drag inside a frame to see the whole page.</p>
+  </header>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Phone — Home screen</h2>
+      <span>360 × 660 · what most of your fans will actually use</span>
+    </div>
+
+    <div class="phones">
+
+      <!-- ============ PHONE 1 : NAVY / AMBER ============ -->
+      <div class="device">
+        <div class="device-label"><span class="dot" style="background:#14304F"></span><span class="dot" style="background:#F0A81E"></span><b>Varsity Navy</b> · current</div>
+        <div class="phone cw-navy">
+          <div class="screen">
+            <div class="island" aria-hidden="true"></div>
+            <div class="statusbar">
+              <span>9:41</span>
+              <span style="display:flex;align-items:center;gap:6px;">
+                <span class="sigs" aria-hidden="true"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span>
+                <span class="batt" aria-hidden="true"></span>
+              </span>
+            </div>
+            <div class="scroll">
+              <div class="s-league">
+                <span class="kick">2025–26 · Division I</span>
+                <h3>Riverside Metro<em>Basketball League</em></h3>
+                <div class="s-chips">
+                  <span class="s-chip"><span class="live"></span><b>2 live</b></span>
+                  <span class="s-chip"><b>12</b> teams</span>
+                  <span class="s-chip">Week <b>9 / 14</b></span>
+                </div>
+              </div>
+
+              <div class="s-sponsors">
+                <div class="bar"><span>Our Sponsors</span><i></i></div>
+                <div class="presenting">
+                  <span class="glyph">99</span>
+                  <span class="lock"><b>99¢ Plus Store</b><small>Presenting sponsor</small></span>
+                </div>
+                <div class="tiles">
+                  <span class="tile"><span class="glyph">NA</span><span class="lock"><b>Northgate</b><small>Gold</small></span></span>
+                  <span class="tile"><span class="glyph">RD</span><span class="lock"><b>Rivera</b><small>Gold</small></span></span>
+                  <span class="tile"><span class="glyph">HP</span><span class="lock"><b>Halal Pizza</b><small>Gold</small></span></span>
+                  <span class="tile"><span class="glyph">LM</span><span class="lock"><b>Lakeview</b><small>Community</small></span></span>
+                </div>
+              </div>
+
+              <div class="s-block">
+                <h4>Today <a href="#top">All games</a></h4>
+                <div class="card">
+                  <div class="top is-live"><span class="live"></span>Q3 · 4:12</div>
+                  <div class="ln"><span class="tag">FAL</span><span class="nm">Falcons</span><span class="pt">61</span></div>
+                  <div class="ln dim"><span class="tag">RAP</span><span class="nm">Rapids</span><span class="pt">57</span></div>
+                  <div class="bot">Franklin HS Main Gym · <b>99¢ Plus</b></div>
+                </div>
+                <div class="card">
+                  <div class="top">Final</div>
+                  <div class="ln"><span class="tag">STO</span><span class="nm">Stone Owls</span><span class="pt">88</span></div>
+                  <div class="ln dim"><span class="tag">COM</span><span class="nm">Comets</span><span class="pt">74</span></div>
+                  <div class="bot">A. Duran 27 PTS · 9 REB</div>
+                </div>
+              </div>
+
+              <div class="s-block">
+                <h4>North standings <a href="#top">Full</a></h4>
+                <div class="card">
+                  <table class="mini">
+                    <thead><tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>STRK</th></tr></thead>
+                    <tbody>
+                      <tr><td><span class="tm"><span class="sd">1</span><span class="tag">FAL</span><b>Falcons</b></span></td><td>12</td><td>2</td><td>.857</td><td class="w">W6</td></tr>
+                      <tr><td><span class="tm"><span class="sd">2</span><span class="tag">STO</span><b>Stone Owls</b></span></td><td>11</td><td>3</td><td>.786</td><td class="w">W2</td></tr>
+                      <tr><td><span class="tm"><span class="sd">3</span><span class="tag">CAR</span><b>Cardinals</b></span></td><td>9</td><td>5</td><td>.643</td><td class="l">L1</td></tr>
+                      <tr><td><span class="tm"><span class="sd">4</span><span class="tag">BRI</span><b>Brickmen</b></span></td><td>8</td><td>6</td><td>.571</td><td class="l">L2</td></tr>
+                      <tr class="cut"><td><span class="tm"><span class="sd">5</span><span class="tag">GRA</span><b>Granite</b></span></td><td>7</td><td>7</td><td>.500</td><td class="w">W1</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p class="s-note">Line marks the playoff cut — top four host a first-round game.</p>
+            </div>
+            <nav class="tabbar">
+              <a class="on" href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18"/></svg>Scores</a>
+              <a href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Table</a>
+              <a href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19V10M12 19V5M19 19v-6"/></svg>Stats</a>
+              <a href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/></svg>Teams</a>
+              <a href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11V5h6l9 9-6 6z"/><circle cx="8" cy="9" r="1.4" fill="currentColor" stroke="none"/></svg>Sponsors</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ PHONE 2 : NBA RED / WHITE / BLUE ============ -->
+      <div class="device">
+        <div class="device-label"><span class="dot" style="background:#1D428A"></span><span class="dot" style="background:#C8102E"></span><b>NBA Red · White · Blue</b> · alternate</div>
+        <div class="phone cw-nba">
+          <div class="screen">
+            <div class="island" aria-hidden="true"></div>
+            <div class="statusbar">
+              <span>9:41</span>
+              <span style="display:flex;align-items:center;gap:6px;">
+                <span class="sigs" aria-hidden="true"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span>
+                <span class="batt" aria-hidden="true"></span>
+              </span>
+            </div>
+            <div class="scroll">
+              <div class="s-league">
+                <span class="kick">2025–26 · Division I</span>
+                <h3>Riverside Metro<em>Basketball League</em></h3>
+                <div class="s-chips">
+                  <span class="s-chip"><span class="live" style="background:#fff"></span><b>2 live</b></span>
+                  <span class="s-chip"><b>12</b> teams</span>
+                  <span class="s-chip">Week <b>9 / 14</b></span>
+                </div>
+              </div>
+
+              <div class="s-sponsors">
+                <div class="bar"><span>Our Sponsors</span><i></i></div>
+                <div class="presenting">
+                  <span class="glyph">99</span>
+                  <span class="lock"><b>99¢ Plus Store</b><small>Presenting sponsor</small></span>
+                </div>
+                <div class="tiles">
+                  <span class="tile"><span class="glyph">NA</span><span class="lock"><b>Northgate</b><small>Gold</small></span></span>
+                  <span class="tile"><span class="glyph">RD</span><span class="lock"><b>Rivera</b><small>Gold</small></span></span>
+                  <span class="tile"><span class="glyph">HP</span><span class="lock"><b>Halal Pizza</b><small>Gold</small></span></span>
+                  <span class="tile"><span class="glyph">LM</span><span class="lock"><b>Lakeview</b><small>Community</small></span></span>
+                </div>
+              </div>
+
+              <div class="s-block">
+                <h4>Today <a href="#top">All games</a></h4>
+                <div class="card">
+                  <div class="top is-live"><span class="live"></span>Q3 · 4:12</div>
+                  <div class="ln"><span class="tag">FAL</span><span class="nm">Falcons</span><span class="pt">61</span></div>
+                  <div class="ln dim"><span class="tag">RAP</span><span class="nm">Rapids</span><span class="pt">57</span></div>
+                  <div class="bot">Franklin HS Main Gym · <b>99¢ Plus</b></div>
+                </div>
+                <div class="card">
+                  <div class="top">Final / OT</div>
+                  <div class="ln dim"><span class="tag">BRI</span><span class="nm">Brickmen</span><span class="pt">91</span></div>
+                  <div class="ln"><span class="tag">VOL</span><span class="nm">Voltage</span><span class="pt">94</span></div>
+                  <div class="bot">M. Okafor game-winner at 0:02</div>
+                </div>
+              </div>
+
+              <div class="s-block">
+                <h4>North standings <a href="#top">Full</a></h4>
+                <div class="card">
+                  <table class="mini">
+                    <thead><tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>STRK</th></tr></thead>
+                    <tbody>
+                      <tr><td><span class="tm"><span class="sd">1</span><span class="tag">FAL</span><b>Falcons</b></span></td><td>12</td><td>2</td><td>.857</td><td class="w">W6</td></tr>
+                      <tr><td><span class="tm"><span class="sd">2</span><span class="tag">STO</span><b>Stone Owls</b></span></td><td>11</td><td>3</td><td>.786</td><td class="w">W2</td></tr>
+                      <tr><td><span class="tm"><span class="sd">3</span><span class="tag">CAR</span><b>Cardinals</b></span></td><td>9</td><td>5</td><td>.643</td><td class="l">L1</td></tr>
+                      <tr><td><span class="tm"><span class="sd">4</span><span class="tag">BRI</span><b>Brickmen</b></span></td><td>8</td><td>6</td><td>.571</td><td class="l">L2</td></tr>
+                      <tr class="cut"><td><span class="tm"><span class="sd">5</span><span class="tag">GRA</span><b>Granite</b></span></td><td>7</td><td>7</td><td>.500</td><td class="w">W1</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p class="s-note">Line marks the playoff cut — top four host a first-round game.</p>
+            </div>
+            <nav class="tabbar">
+              <a class="on" href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18"/></svg>Scores</a>
+              <a href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Table</a>
+              <a href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19V10M12 19V5M19 19v-6"/></svg>Stats</a>
+              <a href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/></svg>Teams</a>
+              <a href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11V5h6l9 9-6 6z"/><circle cx="8" cy="9" r="1.4" fill="currentColor" stroke="none"/></svg>Sponsors</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ DESKTOP : NBA COLORWAY ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Desktop — NBA colorway</h2>
+      <span>Same page on a laptop, scaled to fit</span>
+    </div>
+    <div class="browser cw-nba">
+      <div class="chrome">
+        <i></i><i></i><i></i>
+        <span class="url">courtinsights.app</span>
+      </div>
+      <div class="dt-vp" id="dtvp">
+        <div class="dt" id="dt">
+          <div class="dt-nav">
+            <span class="brandmark"><span class="b"></span>Court Insights</span>
+            <nav><span>Scores</span><span>Standings</span><span>Stats</span><span>Teams</span><span>Sponsors</span></nav>
+          </div>
+          <div class="dt-league">
+            <div>
+              <span class="kick">2025–26 Season · Division I</span>
+              <h3>Riverside Metro<em>Basketball League</em></h3>
+            </div>
+            <div class="wk"><small>Regular season</small><b>Week 9 / 14</b></div>
+          </div>
+          <div class="dt-sponsors">
+            <div class="bar"><span>Our 2025–26 Sponsors</span><i></i></div>
+            <div class="row">
+              <div class="pres">
+                <span class="glyph">99</span>
+                <span class="lock"><b>99¢ Plus Store</b><small>Presenting Sponsor · Season &amp; Playoffs</small></span>
+              </div>
+              <div class="grid">
+                <span class="tile"><span class="glyph">NA</span><span class="lock"><b>Northgate Auto</b><small>Gold · Scorer's table</small></span></span>
+                <span class="tile"><span class="glyph">RD</span><span class="lock"><b>Rivera Dental</b><small>Gold · Free-throw</small></span></span>
+                <span class="tile"><span class="glyph">HP</span><span class="lock"><b>Halal Pizza Co.</b><small>Gold · Halftime</small></span></span>
+                <span class="tile"><span class="glyph">CB</span><span class="lock"><b>Cedar Barbers</b><small>Community</small></span></span>
+                <span class="tile"><span class="glyph">LM</span><span class="lock"><b>Lakeview Market</b><small>Community</small></span></span>
+                <span class="tile"><span class="glyph">SP</span><span class="lock"><b>Summit Physio</b><small>Community · Trainer</small></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="dt-body">
+            <div class="dt-panel">
+              <div class="hd"><h5>Standings — North</h5><small>Through Week 9</small></div>
+              <div class="bd">
+                <table class="mini">
+                  <thead><tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th><th>STRK</th></tr></thead>
+                  <tbody>
+                    <tr><td><span class="tm"><span class="sd">1</span><span class="tag">FAL</span><b>Falcons</b></span></td><td>12</td><td>2</td><td>.857</td><td>—</td><td class="w">W6</td></tr>
+                    <tr><td><span class="tm"><span class="sd">2</span><span class="tag">STO</span><b>Stone Owls</b></span></td><td>11</td><td>3</td><td>.786</td><td>1.0</td><td class="w">W2</td></tr>
+                    <tr><td><span class="tm"><span class="sd">3</span><span class="tag">CAR</span><b>Cardinals</b></span></td><td>9</td><td>5</td><td>.643</td><td>3.0</td><td class="l">L1</td></tr>
+                    <tr><td><span class="tm"><span class="sd">4</span><span class="tag">BRI</span><b>Brickmen</b></span></td><td>8</td><td>6</td><td>.571</td><td>4.0</td><td class="l">L2</td></tr>
+                    <tr class="cut"><td><span class="tm"><span class="sd">5</span><span class="tag">GRA</span><b>Granite</b></span></td><td>7</td><td>7</td><td>.500</td><td>5.0</td><td class="w">W1</td></tr>
+                    <tr><td><span class="tm"><span class="sd">6</span><span class="tag">COM</span><b>Comets</b></span></td><td>6</td><td>8</td><td>.429</td><td>6.0</td><td class="l">L3</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="dt-panel">
+              <div class="hd"><h5>Today</h5><small>Feb 14</small></div>
+              <div class="bd">
+                <div class="card">
+                  <div class="top is-live"><span class="live"></span>Q3 · 4:12</div>
+                  <div class="ln"><span class="tag">FAL</span><span class="nm">Falcons</span><span class="pt">61</span></div>
+                  <div class="ln dim"><span class="tag">RAP</span><span class="nm">Rapids</span><span class="pt">57</span></div>
+                  <div class="bot">Franklin HS Main Gym · <b>99¢ Plus</b></div>
+                </div>
+                <div class="card">
+                  <div class="top is-live"><span class="live"></span>Q2 · 0:48</div>
+                  <div class="ln dim"><span class="tag">IRO</span><span class="nm">Ironworks</span><span class="pt">38</span></div>
+                  <div class="ln"><span class="tag">HAR</span><span class="nm">Harbor</span><span class="pt">45</span></div>
+                  <div class="bot">Eastside Rec Center · <b>Northgate Auto</b></div>
+                </div>
+                <div class="card">
+                  <div class="top">Tonight · 7:30 PM</div>
+                  <div class="ln"><span class="tag">CAR</span><span class="nm">Cardinals</span><span class="rc">(9-5)</span><span class="pt">—</span></div>
+                  <div class="ln"><span class="tag">TID</span><span class="nm">Tide</span><span class="rc">(5-9)</span><span class="pt">—</span></div>
+                  <div class="bot">Riverside Armory · <b>Rivera Dental</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>The two palettes</h2>
+      <span>Hex values, ready to drop into the stylesheet</span>
+    </div>
+    <div class="swatches">
+      <div class="pal">
+        <h3>Varsity Navy</h3>
+        <ul>
+          <li><span class="sw" style="background:#14304F"></span><span class="nm">Brand — banner, nav, tags</span><span class="hex">#14304F</span></li>
+          <li><span class="sw" style="background:#F0A81E"></span><span class="nm">Accent — sponsor rules, CTA</span><span class="hex">#F0A81E</span></li>
+          <li><span class="sw" style="background:#EEF1F5"></span><span class="nm">Page ground</span><span class="hex">#EEF1F5</span></li>
+          <li><span class="sw" style="background:#0B1524"></span><span class="nm">Ink</span><span class="hex">#0B1524</span></li>
+          <li><span class="sw" style="background:#15734A"></span><span class="nm">Win streak</span><span class="hex">#15734A</span></li>
+          <li><span class="sw" style="background:#C0392B"></span><span class="nm">Live / loss</span><span class="hex">#C0392B</span></li>
+        </ul>
+      </div>
+      <div class="pal">
+        <h3>NBA Red · White · Blue</h3>
+        <ul>
+          <li><span class="sw" style="background:#1D428A"></span><span class="nm">Brand blue — banner, nav</span><span class="hex">#1D428A</span></li>
+          <li><span class="sw" style="background:#C8102E"></span><span class="nm">Accent red — live, rules, cut line</span><span class="hex">#C8102E</span></li>
+          <li><span class="sw" style="background:#FFFFFF"></span><span class="nm">Surface — cards, sponsor band</span><span class="hex">#FFFFFF</span></li>
+          <li><span class="sw" style="background:#F4F6FA"></span><span class="nm">Page ground</span><span class="hex">#F4F6FA</span></li>
+          <li><span class="sw" style="background:#0E1730"></span><span class="nm">Ink</span><span class="hex">#0E1730</span></li>
+          <li><span class="sw" style="background:#17794F"></span><span class="nm">Win streak</span><span class="hex">#17794F</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Sample league, team and sponsor names shown for design review. Swap in the real league and the palette you pick becomes six CSS variables — no layout changes needed.
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var vp = document.getElementById('dtvp');
+    var dt = document.getElementById('dt');
+    if (!vp || !dt) { return; }
+    function fit() {
+      var scale = vp.clientWidth / 1180;
+      dt.style.transform = 'scale(' + scale + ')';
+      vp.style.height = Math.round(dt.offsetHeight * scale) + 'px';
+    }
+    fit();
+    window.addEventListener('resize', fit);
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fit); }
+  })();
+</script>
